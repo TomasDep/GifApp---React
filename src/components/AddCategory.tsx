@@ -2,15 +2,19 @@ import { useState } from "react";
 import { Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 
-export const AddCategory = ({ onNewCategory }): JSX.Element => {
-  const [inputValue, setInputValue] = useState();
+export const AddCategory = ({
+  onNewCategory,
+}: {
+  onNewCategory: any;
+}): JSX.Element => {
+  const [inputValue, setInputValue] = useState<string>();
   const onInputChange = (event: any) => {
     setInputValue(event.target.value);
   };
   const onSubmit = (event: any) => {
     event.preventDefault();
-    const value = inputValue.trim();
-    if (value.length <= 1) return;
+    const value = inputValue?.trim();
+    if (value!.length <= 1) return;
     onNewCategory(value);
     setInputValue("");
   };
